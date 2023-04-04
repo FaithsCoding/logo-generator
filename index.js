@@ -52,6 +52,12 @@ function writeToFile(fileName, data) {
   });
 }
 
+function writeHTMLFile(svgContent, backgroundColor) {
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const htmlFileName = `logo=${timestamp}.html`;
+    const htmlContent =` `
+}
+
 async function init() {
   var svgString = "";
   var svg_file = "logo.svg";

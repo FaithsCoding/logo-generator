@@ -18,6 +18,35 @@ class Svg {
   }
 }
 
+function writeHTMLFile(svgContent, backgroundColor) {
+  const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+  const htmlFileName = `logo=${timestamp}.html`;
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html lang="en"
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, intial-scale=1.0">
+    <title> Your logo </title>
+    </head>
+    <body style="background-color: ${backgroundColor};"
+    <div id="svg-container">
+    ${svgContent}
+    </div>
+    </body>
+    </html>
+     `;
+
+  fs.writeFile(htmlFileName, htmlContent, (err) => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log(
+      "A SVG & HTML file including your logo has been generated. Please open the HTML file in your browser to view this."
+    );
+  });
+}
+
 const questions = [
   {
     type: "input",
@@ -42,6 +71,13 @@ const questions = [
     message: "Choose which shape you would like",
     choices: ["Circle", "Square", "Triangle"],
   },
+
+  {
+    type: "input",
+    name: "background-color",
+    message:
+      "Background color: Enter a color keyword or a hexadecimal color code. Consider your choice of shape color:",
+  },
 ];
 
 function writeToFile(fileName, data) {
@@ -51,28 +87,6 @@ function writeToFile(fileName, data) {
     }
   });
 }
-
-function writeHTMLFile(svgContent, backgroundColor) {
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-    const htmlFileName = `logo=${timestamp}.html`;
-    const htmlContent =`
-    <!DOCTYPE html>
-    <html lang="en"
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, intial-scale=1.0">
-    <title> Your logo </title>
-    </head>
-    <body style="background-color: ${backgroundColor};"
-    <div id="svg-container">
-    ${svgContent}
-    </div>
-    </body>
-    </html>
-     `;
-}
-
-
 
 async function init() {
   var svgString = "";
@@ -87,12 +101,14 @@ async function init() {
     console.log(
       "Invalid user text field detected! Please enter 1-3 Characters, no more and no less"
     );
+
     return;
   }
 
   user_font_color = answers["text-color"];
   user_shape_color = answers["shape-color"];
   user_shape_type = answers["shape"];
+  user_background_color = answers["background-color"];
 
   let user_shape;
   if (user_shape_type === "Square" || user_shape_type === "square") {
@@ -112,5 +128,7 @@ async function init() {
   svgString = svg.render();
 
   writeToFile(svg_file, svgString);
+  writeToFile(svg_file, svgString);
+  writeHTMLFile(svgString, user_background_color);
 }
 init();

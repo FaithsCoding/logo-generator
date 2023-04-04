@@ -55,8 +55,24 @@ function writeToFile(fileName, data) {
 function writeHTMLFile(svgContent, backgroundColor) {
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
     const htmlFileName = `logo=${timestamp}.html`;
-    const htmlContent =` `
+    const htmlContent =`
+    <!DOCTYPE html>
+    <html lang="en"
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, intial-scale=1.0">
+    <title> Your logo </title>
+    </head>
+    <body style="background-color: ${backgroundColor};"
+    <div id="svg-container">
+    ${svgContent}
+    </div>
+    </body>
+    </html>
+     `;
 }
+
+
 
 async function init() {
   var svgString = "";

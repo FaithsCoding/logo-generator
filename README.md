@@ -20,8 +20,6 @@ This project is licensed under the MIT license.
 
 ![MIT](https://img.shields.io/badge/LICENSE-MIT-red)
 
-
-
 ## Installation
 In order to run this project you will need to have installed Node, VS code and GitBash (for windows)
 
@@ -31,7 +29,12 @@ In order to use this app you will need to clone the repository into your local d
 
 ## Tests
 
-You can test this application by creating a logo using hexadecimals, by creating individual logos using each of the shapes and by using the SVG code in a HTML file. 
+You can test this application by opening the test file and running npm test, this proces uses Jest to run the application. 
+![Screenshot 2023-04-06 at 21 43 52](https://user-images.githubusercontent.com/122907573/230490421-a2bbd773-3d13-4a4e-bf10-a6a677286afe.png)
+
+
+## Demo
+[logo-generator youtube link](https://youtu.be/OOA4GqwvA6E)
 
 ## Contributing
 

@@ -11,8 +11,8 @@ class Svg {
   }
 
   render(shapeColor, shapeBorder) {
-    const borderColor = shapeColor.toLowerCase() === 'white' ? 'black' : 'none';
-    const style = shapeBorder ? `style="${shapeBorder}"` : '';
+    const borderColor = shapeColor.toLowerCase() === "white" ? "black" : "none";
+    const style = shapeBorder ? `style="${shapeBorder}"` : "";
     const svgString = `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="300" height="200" ${style}>${this.shapeElement}${this.textElement}</svg>`;
     return svgString;
   }
@@ -28,35 +28,43 @@ class Svg {
 //These lines define an array of questions for the user prompt. The prompt asks for text, text color, shape color, shape type, and whether to add a border.
 const questions = [
   {
-    type: 'input',
-    name: 'text',
-    message: 'Text: Enter up to 3 characters:',
+    type: "input",
+    name: "text",
+    message: "TEXT: Enter up to 3 characters:",
+    validate: function (input) {
+      if (input.length <= 3) {
+        return true;
+      } else {
+        return "Please enter no more than 3 characters.";
+      }
+    },
   },
   {
-    type: 'input',
-    name: 'textColor',
-    message: 'TEXT COLOR: Enter a color keyword or hexadecimal value (e.g., #FF0000):',
-  },
-  {
-    type: 'input',
-    name: 'shapeColor',
-    message: 'SHAPE COLOR: Enter a color keyword or hexadecimal value (e.g., #FF0000):',
-  },
-  {
-    type: 'list',
-    name: 'shape',
-    message: 'Choose which shape you would like',
-    choices: ['Circle', 'Square', 'Triangle'],
-  },
-  {
-    type: 'list',
-    name: 'shapeBorder',
+    type: "input",
+    name: "textColor",
     message:
-      'Add a border? Note: if you choose a white shape without a border you will not be able to see the outline of that shape.',
-    choices: ['Yes', 'No'],
-    when: (answers) =>
-      ['Circle', 'Square', 'Triangle'].includes(answers.shape),
-    validate: (answer) => ['Yes', 'No'].includes(answer),
+      "TEXT COLOR: Enter a color keyword or hexadecimal value (e.g., #FF0000):",
+  },
+  {
+    type: "input",
+    name: "shapeColor",
+    message:
+      "SHAPE COLOR: Enter a color keyword or hexadecimal value (e.g., #FF0000):",
+  },
+  {
+    type: "list",
+    name: "shape",
+    message: "Choose which shape you would like",
+    choices: ["Circle", "Square", "Triangle"],
+  },
+  {
+    type: "list",
+    name: "shapeBorder",
+    message:
+      "Add a border? Note: if you choose a white shape without a border you will not be able to see the outline of that shape.",
+    choices: ["Yes", "No"],
+    when: (answers) => ["Circle", "Square", "Triangle"].includes(answers.shape),
+    validate: (answer) => ["Yes", "No"].includes(answer),
   },
 ];
 
@@ -72,7 +80,7 @@ function writeToFile(fileName, data) {
 
 //This beginning part of the functions is defining the const variables which are variables that can't be re-definined.
 async function init() {
-  const svgFile = 'logo.svg';
+  const svgFile = "logo.svg";
   const answers = await inquirer.prompt(questions);
   const userText = answers.text.slice(0, 3);
   const userFontColor = answers.textColor;
@@ -81,35 +89,35 @@ async function init() {
   const userShapeBorder = answers.shapeBorder;
 
   let userShape;
-  let shapeBorder = '';
-  if (userShapeType.toLowerCase() === 'square') {
+  let shapeBorder = "";
+  if (userShapeType.toLowerCase() === "square") {
     userShape = new Square();
-    if (userShapeColor === 'white') {
-      shapeBorder = 'stroke-width: 2px; stroke: black;';
+    if (userShapeColor === "white") {
+      shapeBorder = "stroke-width: 2px; stroke: black;";
     }
-  } else if (userShapeType.toLowerCase() === 'circle') {
+  } else if (userShapeType.toLowerCase() === "circle") {
     userShape = new Circle();
-    if (userShapeBorder === 'Yes') {
-      shapeBorder = 'stroke-width: 2px; stroke: black;';
+    if (userShapeBorder === "Yes") {
+      shapeBorder = "stroke-width: 2px; stroke: black;";
     }
-  } else if (userShapeType.toLowerCase() === 'triangle') {
+  } else if (userShapeType.toLowerCase() === "triangle") {
     userShape = new Triangle();
-    if (userShapeBorder === 'Yes' && userShapeColor === 'white') {
-      shapeBorder = 'stroke-width: 2px; stroke: black;';
+    if (userShapeBorder === "Yes" && userShapeColor === "white") {
+      shapeBorder = "stroke-width: 2px; stroke: black;";
     }
   } else {
-    console.log('Invalid shape!');
+    console.log("Invalid shape!");
     return;
-    }
-    
-    userShape.setColor(userShapeColor);
-    
-    const svg = new Svg();
-    svg.setTextElement(userText, userFontColor);
-    svg.setShapeElement(userShape);
-    const svgString = svg.render(userShapeColor, shapeBorder);
-    writeToFile(svgFile, svgString);
-    }
+  }
+
+  userShape.setColor(userShapeColor);
+
+  const svg = new Svg();
+  svg.setTextElement(userText, userFontColor);
+  svg.setShapeElement(userShape);
+  const svgString = svg.render(userShapeColor, shapeBorder);
+  writeToFile(svgFile, svgString);
+}
 
 //This is used to run/initialise the above script.
 init();

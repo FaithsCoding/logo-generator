@@ -34,7 +34,7 @@ You can test this application by opening the test file and running npm test, thi
 
 
 ## Demo
-[logo-generator youtube link](https://youtu.be/OOA4GqwvA6E)
+[logo-generator youtube link](https://youtu.be/MIi2Pi51eHs)
 
 ## Contributing
 

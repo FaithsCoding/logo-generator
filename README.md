@@ -2,7 +2,7 @@
 
 ## Description
 
-I have created a back end application which creates a simple logo based on user input. This logo generator allows the user to pick a text color, shape color, shape (circle, square, or triangle) and then adds a border so all logos are visible on a white background. 
+I have created a back end application which creates a simple logo based on user input. This logo generator allows the user to pick a text color, shape color, shape (circle, square, or triangle) and then adds a border so all logos are visible on a white background.
 
 ## Table of Contents
 
@@ -13,7 +13,7 @@ I have created a back end application which creates a simple logo based on user 
 - [Tests](#tests)
 - [Contributing](#contributing)
 - [Questions](#questions)
-   
+
 ## License
 
 This project is licensed under the MIT license.
@@ -21,6 +21,7 @@ This project is licensed under the MIT license.
 ![MIT](https://img.shields.io/badge/LICENSE-MIT-red)
 
 ## Installation
+
 In order to run this project you will need to have installed Node, VS code and GitBash (for windows)
 
 ## Usage
@@ -29,11 +30,13 @@ In order to use this app you will need to clone the repository into your local d
 
 ## Tests
 
-You can test this application by opening the test file and running npm test, this proces uses Jest to run the application. 
+You can test this application by opening the test file and running npm test, this proces uses Jest to run the application.
 ![Screenshot 2023-04-06 at 21 43 52](https://user-images.githubusercontent.com/122907573/230490421-a2bbd773-3d13-4a4e-bf10-a6a677286afe.png)
 
+![Video of tests](examples/logo-generator-tests.gif)
 
 ## Demo
+
 [logo-generator youtube link](https://youtu.be/MIi2Pi51eHs)
 
 ## Contributing
@@ -41,6 +44,7 @@ You can test this application by opening the test file and running npm test, thi
 Faith Meades
 
 ## Questions
+
 Username: FaithsCoding,
 URL: github.com/faithscoding,
 You can send me any questions via email: faithscoding@outlook.com
